@@ -279,8 +279,8 @@ def world6(know_model=True):
 
 
 # For testing the midlevel optimizer
-def world7():
-    num_cars, prob_aut = 1, 0.5 
+def world7(prob_aut=0.5):
+    num_cars, prob_aut = 20, prob_aut 
     aut_list = np.zeros(num_cars)
     dyn = dynamics.CarDynamics(0.1)
     world = World(midlevel_exists=True)

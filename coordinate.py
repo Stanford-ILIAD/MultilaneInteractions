@@ -29,7 +29,7 @@ class Coordinate(object):
         # number of times the control loop has run since last midlevel run
         self.cntrl_loop_counter = 0
         self.termination_counter = 0
-        self.MAX_ITER = 2 
+        self.MAX_ITER = 200 
         self.aut_level = None
 
     def use_world(self, world):
