@@ -6,7 +6,7 @@ import theano as th
 from car import UserControlledCar
 #import gc
 
-th.config.optimizer_verbose = True 
+th.config.optimizer_verbose = False 
 th.config.allow_gc = False
 
 if __name__ == '__main__':

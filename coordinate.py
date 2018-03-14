@@ -55,6 +55,15 @@ class Coordinate(object):
             self.midlevel.increment_goals()
 
     def control_loop(self):
+        steer, gas = 0,0
+        if self.feed_u is None:
+            for car in reversed(self.cars):
+                car.control(steer, gas)
+        else:
+            for car, fu, hu in zip(self.cars, self.feed_u, self.history_u):
+                car.u = fu[len(hu)]
+        for car, hist in zip(self.cars, self.history_u):
+            hist.append(car.u)
         for car in self.cars:
             self.prev_x[car] = car.x
         for car in self.cars:
@@ -90,7 +99,9 @@ class Coordinate(object):
 
     def run(self):
         self.reset()
-        for _ in range(self.MAX_ITER):
+        for i in range(self.MAX_ITER):
             self.control_loop()
+            if i % 30 == 0 and self.midlevel_exists:
+                self.midlevel_loop()
 
 
